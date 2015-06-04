@@ -1,0 +1,48 @@
+﻿@model JusttBlogg.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd>
+            @Html.DisplayFor(model => model.postTitle)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.postContent)
+        </dd>
+
+        @if (Model.Photos.Any(f => f.PhotoType == JusttBlogg.Models.PhotoType.Image))
+        {
+            <dt>
+                Image
+            </dt>
+            <dd>
+                <img src="~/Photo?id=@Model.Photos.First(f => f.PhotoType == JusttBlogg.Models.PhotoType.Image).PhotoId" alt="avatar" height="200px" width="300px" />
+            </dd>
+        }
+
+
+
+        <dd>
+            @Html.DisplayFor(model => model.postDate)
+        </dd>
+
+
+
+        <dd>
+            @Html.DisplayFor(model => model.createdBY)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

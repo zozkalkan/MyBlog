@@ -1,0 +1,31 @@
+﻿@model PagedList.IPagedList<JusttBlogg.Models.Post>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+
+    <div style="border: 2px dotted white; padding: 25px; ">
+        <h1 style="text-align:center">All Post </h1>
+
+        @foreach (var item in Model)
+        {
+            <div style="border:1px dotted orange; padding:15px">
+                <h3 style="text-align:center">@item.postTitle</h3>
+                <p>
+                    @item.Preview
+                    @Html.ActionLink("more...", "Details", new { id = item.postId })
+                </p>
+                <strong> Author : @item.createdBY </strong>
+            </div>
+        }
+    </div>
+}
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

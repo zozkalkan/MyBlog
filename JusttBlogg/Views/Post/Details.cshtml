@@ -1,0 +1,68 @@
+﻿@model JusttBlogg.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Preview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postContent)
+        </dd>
+
+        @if (Model.Photos.Any(f => f.PhotoType == JusttBlogg.Models.PhotoType.Image))
+        {
+            <dt>
+                Image
+            </dt>
+            <dd>
+                <img src="~/Photo?id=@Model.Photos.First(f => f.PhotoType == JusttBlogg.Models.PhotoType.Image).PhotoId" alt="avatar" height="200px" width="300px" />
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdBY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdBY)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.postId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
